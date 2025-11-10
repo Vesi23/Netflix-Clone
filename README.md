@@ -179,6 +179,7 @@ npm install --save-dev live-server
 ```
 
 ## 2) Създаване на основни файлове
+```bash
 netflix-clone/
 ├── index.html
 ├── package.json
@@ -200,6 +201,7 @@ netflix-clone/
 │   └── styles/
 │       └── style.css
 └── README.md
+```
 
 ## 3) Първичен HTML и стартиращ скрипт
 index.html — минимален шаблон:
