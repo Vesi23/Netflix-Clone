@@ -135,6 +135,7 @@ https://api.themoviedb.org/3/movie/{id}/videos?api_key=YOUR_API_KEY
 | ℹ️ **About View**    | Статична страница с информация за приложението.                                                      |
 
 ## 4. Структура на проекта
+```bash
 src/
 ├── events/
 │   └── searchHandler.js        # обработва логика за търсене, debounce, input слушатели
@@ -154,7 +155,9 @@ src/
 │   ├── movieDetails.js         # визуализира отделен филм (карта/постер)
 │   └── moviePage.js            # пълен изглед на филм с трейлър, актьори, описание
 │
-└── index.js                    # основен контролер (routing между views)
+└── index.js
+                    # основен контролер (routing между views)
+```
 
 
 ## Стъпка по стъпка план — как да започне и работи по проекта (Netflix clone):
