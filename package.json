@@ -23,28 +23,3 @@
     "live-server": "^1.2.2"
   }
 }
-
-{
-  "name": "netflix-clone",
-  "version": "1.0.0",
-  "description": "Тук са описани как се стартира проектът, каква е структурата на папките и за какво служи всеки файл.",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "live-server --port=8080"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Vesi23/Netflix-Clone.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Vesi23/Netflix-Clone/issues"
-  },
-  "homepage": "https://github.com/Vesi23/Netflix-Clone#readme",
-  "devDependencies": {
-    "live-server": "^1.2.2"
-  }
-}
