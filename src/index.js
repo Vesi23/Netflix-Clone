@@ -1,4 +1,4 @@
-import { renderAbout } from "./views/about.js";
+import { renderAbout } from "./views/about.js";     
 
 // Изчакваме DOM да се зареди
 document.addEventListener('DOMContentLoaded', function() {
