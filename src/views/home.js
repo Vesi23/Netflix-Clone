@@ -6,7 +6,7 @@ export async function renderHome() {
         const movies = await getPopularMovies();
         const container = document.createElement("div");
         container.classList.add("add-movie-grid");
-        (movies || [].forEach(movies => container.appendChild(renderMovieCard(movies))));
+        (movies || []).forEach(movie => container.appendChild(renderMovieCard(movie)));
         return container;
     } catch (error) {
         const container = document.createElement("div");

@@ -4,11 +4,11 @@ export function getFavorites() {
 
 export function isFavorite(movieId) {
     const favorites = getFavorites();
-    return favorites.some((movie) => movie.id === movieId)
+    return favorites.some((movie) => movie.id === movieId);
 }
 
 export function toggleFavorite(movie) {
-    const favorites = getFavorites();
+    let favorites = getFavorites();
     const exist = favorites.find((m) => m.id === movie.id);
     let added;
     if (exist) {
@@ -18,7 +18,7 @@ export function toggleFavorite(movie) {
         favorites.push(movie);
         added = true;
     }
-    localStorage.setItem('favorites', JSON.strungify(favorites));
+    localStorage.setItem('favorites', JSON.stringify(favorites));
     try {
         console.log('dispatch favoriteChanged', { movieId: movie.id, added });
         document.dispatchEvent(new CustomEvent('favoriteChanged', { detail: { movieId: movie.id, added } }));
