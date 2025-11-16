@@ -12,4 +12,5 @@ export function renderMovieCard(movie) {
     <h3 class="movie-title">${movie.title}</h3>
     <button id="like-btn">${isFavorite(movie.id) ? "❤️" : "🤍"}</button>
     </div>`;
+    return div;
 }
