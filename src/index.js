@@ -2,6 +2,7 @@
 import { renderHome } from './views/home.js';
 import { renderAbout } from './views/about.js';
 import { renderFavorites } from './views/favorites-view.js';
+import { handlerSearch } from './events/searchHandler.js';
 
 const app = document.getElementById('app');
 const homeBtn = document.getElementById('home-btn');
@@ -29,3 +30,9 @@ aboutBtn.addEventListener('click', () => loadView(renderAbout));
 favoritesBtn.addEventListener("click", () => loadView(renderFavorites));
 
 loadView(renderHome);
+searchInput.addEventListener('keyup' , async (event)=>{
+    if(event.key === "Enter" && searchInput.value.trim() !== "") {
+        app.innerHTML = '';
+        app.appendChild( await handlerSearch(event.target.value.trim()));
+    }
+})

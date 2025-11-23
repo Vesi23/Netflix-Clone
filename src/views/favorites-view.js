@@ -5,7 +5,7 @@ import { renderMovieCard } from "./movieDetails.js";
 export async function renderFavorites() {
     const movies = await getFavorites();
     const container = document.createElement('div');
-    container.classList.add('movie-grid');
+    container.classList.add('add-movie-grid');
     if (movies.length === 0) {
         container.innerHTML = `<p>You have no favorite movies yet.</p>`;
         return container;
