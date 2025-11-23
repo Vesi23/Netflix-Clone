@@ -18,7 +18,8 @@ h1 {
     display: flex;
     align-items: center;
 }
-header{
+
+header {
     /* outline: 1px solid red; */
     display: flex;
     justify-content: space-between;
@@ -102,4 +103,32 @@ nav button:hover {
     text-align: center;
     padding: 2rem;
     font-size: 1.2rem;
+}
+
+.add-movie-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    overflow: hidden;
+    gap: 10px;
+}
+
+.movie-card {
+    background-color: #222;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s;
+    padding: 10px;
+}
+
+.movie-card img {
+    width: 100%;
+    height: auto;
+}
+
+.title-row{
+display: flex;
+}
+#like-button {
+background-color: #222;
 }

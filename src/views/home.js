@@ -11,7 +11,7 @@ export async function renderHome() {
     } catch (error) {
         const container = document.createElement("div");
         container.classList.add('error');
-        container.textContent = 'Failed to load movies';
+        container.textContent = 'Failed to  movies';
         console.error('renderHome error:', error);
         return container;
     }
