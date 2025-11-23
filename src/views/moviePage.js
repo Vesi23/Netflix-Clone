@@ -71,4 +71,11 @@ export async function renderMoviePage(movieId) {
         }, { once: true });
     }
 
+    const likeButton = container.querySelector('.like-button');
+    likeButton.dataset.movieId = movie.id;
+    likeButton.textContent = isFavorite(movie.id) ? "❤️ Liked" : "🤍 Like";
+    likeButton.addEventListener('click', () => {
+        const response = toggleFavorite(movie);
+        likeButton.textContent = response.added ? "❤️ Liked" : "🤍 Like";
+    })
 }
