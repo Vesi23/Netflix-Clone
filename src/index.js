@@ -1,8 +1,7 @@
 // import { renderFavorites } from './views/favorites.js';
 import { renderHome } from './views/home.js';
 import { renderAbout } from './views/about.js';
-
-
+import { renderFavorites } from './views/favorites-view.js';
 
 const app = document.getElementById('app');
 const homeBtn = document.getElementById('home-btn');
@@ -27,5 +26,6 @@ async function loadView(view) {
 homeBtn.addEventListener('click', () => loadView(renderHome));
 // favoritesBtn.addEventListener('click', () => loadView(renderFavorites));
 aboutBtn.addEventListener('click', () => loadView(renderAbout));
+favoritesBtn.addEventListener("click", () => loadView(renderFavorites));
 
 loadView(renderHome);
