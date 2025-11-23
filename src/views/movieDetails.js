@@ -1,6 +1,7 @@
 import { IMG_URL } from "../common/constants.js";
 // трябва да добавя още нещо .... 
 import { isFavorite } from "../data/favorites.js";
+import { renderMoviePage } from "./moviePage.js";
 
 export function renderMovieCard(movie) {
     const div = document.createElement("div");
@@ -12,5 +13,7 @@ export function renderMovieCard(movie) {
     <h3 class="movie-title">${movie.title}</h3>
     <button id="like-btn">${isFavorite(movie.id) ? "❤️" : "🤍"}</button>
     </div>`;
+    div.querySelector(".movie-poster").addEventListener("click", () => renderMoviePage(movie.id));
+
     return div;
 }
