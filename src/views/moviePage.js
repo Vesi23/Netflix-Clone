@@ -1,7 +1,7 @@
 import { getMovieVideos, getMoviesDetails, getMovieCredits } from "../requests/api.js";
 import { IMG_URL, YT_BASE } from "../common/constants.js";
-// import { toggleFavorite, isFavorite } from "../data/favorites.js";
-// import { renderHome } from "./home.js";
+import { toggleFavorite, isFavorite } from "../data/favorites.js";
+import { renderHome } from "./home.js";
 
 
 export async function renderMoviePage(movieId) {
@@ -24,7 +24,7 @@ export async function renderMoviePage(movieId) {
     <p class="movie-tagline">${movie.tagline || ''}</p>
     <p class ="movie-overview">${movie.overview}</p>
     <button class="like-button">Like ❤️</button>
-    <button class = "back-button">← Back to Home</button>
+    <button class ="back-button">← Back to Home</button>
     </div>
     </div>
         <div class = "movie-extra">
@@ -49,5 +49,26 @@ export async function renderMoviePage(movieId) {
         `;
     app.innerHTML = '';
     app.appendChild(container);
+    container.querySelector('.back-button').addEventListener("click", async () => {
+        app.innerHTML = '';
+        app.appendChild(await renderHome());
+    })
+    const trailerContainer = container.querySelector(".load-trailer");
+    if (trailerContainer) {
+        trailerContainer.addEventListener('click', (e) => {
+            const parent = e.target.closest('.trailer-container');
+            const key = parent && parent.dataset && parent.dataset.key;
+            if (!key) return;
+            const iframe = document.createElement('iframe');
+            iframe.width = "100%";
+            iframe.height = "500";
+            iframe.src = `${YT_BASE + key}`;
+            iframe.setAttribute('frameborder', '0');
+            iframe.setAttribute('allowfullscreen', 'true');
+            iframe.setAttribute("loading", "lazy");
+            parent.innerHTML = '';
+            parent.appendChild(iframe);
+        }, { once: true });
+    }
 
 }
