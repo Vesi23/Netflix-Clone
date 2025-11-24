@@ -148,8 +148,23 @@ nav button:hover {
   text-align: center;
   overflow: hidden;
   z-index: -1;
+  gap: 10px;
 }
-.start-page-content h1 {
-  backdrop-filter: blur(5px);
-  font-size: 4rem;
+#home-button {
+  background-color: red;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  border-radius: 5px;
+}
+#learn-more-button {
+  background-color: red;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  border-radius: 5px;
 }

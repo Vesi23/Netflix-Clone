@@ -1,6 +1,5 @@
 import { getPopularMovies } from "../requests/api.js";
 import { renderMovieCard } from "./movieDetails.js";
-// import { renderStartingView } from "./starting-view.js";
 
 export async function renderHome() {
   try {
