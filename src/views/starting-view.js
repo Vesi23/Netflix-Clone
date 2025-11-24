@@ -9,8 +9,10 @@ export async function renderStartingView() {
     <div class="start-page-content">
       <h1 class="start-page-title">Welcome to Netflix Clone</h1>
       <p class="start-page-subtitle">Discover popular movies, search for your favorite, and explore detailed information about each movie.</p>
+      <div class="start-page-buttons">
       <button id="home-button">Go to Home</button>
       <button id="learn-more-button">Learn More</button>
+      </div>
     </div>
   `;
 

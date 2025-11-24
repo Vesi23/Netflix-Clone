@@ -13,11 +13,7 @@ const aboutBtn = document.getElementById("about-btn");
 const searchInput = document.getElementById("search");
 
 export async function loadView(view) {
-  if (view === renderStartingView) {
-    if (header) header.style.display = "none";
-  } else {
-    if (header) header.style.display = "flex";
-  }
+  
   app.innerHTML = "";
   try {
     const node = await view();
