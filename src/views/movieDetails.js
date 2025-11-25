@@ -1,5 +1,4 @@
 import { IMG_URL } from "../common/constants.js";
-// трябва да добавя още нещо .... 
 import { isFavorite, toggleFavorite } from "../data/favorites.js";
 import { renderMoviePage } from "./moviePage.js";
 

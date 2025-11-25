@@ -1,5 +1,6 @@
 import { renderHome } from "./home.js";
 import { renderAbout } from "./about.js";
+// import {header} from "../common/header.js";
 
 export async function renderStartingView() {
   const div = document.createElement("div");

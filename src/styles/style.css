@@ -135,13 +135,22 @@ nav button:hover {
   font-size: 1.5rem;
   margin-left: auto;
 }
+.like-btn {
+  background-color: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 20px;
+  margin-left: auto;
+}
+
 .start-page-overlay {
   background-image: url(/src/images/netflix-background.jpg);
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
   height: 100vh;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   color: white;
@@ -184,7 +193,7 @@ nav button:hover {
   transition: background-color 0.4s;
 }
 #home-button:hover {
-  background-color: #f6121d;
+  background-color: #c4000a;
 }
 #learn-more-button:hover {
   background-color: white;
