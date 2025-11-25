@@ -16,17 +16,24 @@ export async function renderStartingView() {
       </div>
     </div>
   `;
-
+  const header = document.querySelector("header");
+  if (header) {
+    header.style.display = "none";
+  }
   const homeButton = div.querySelector("#home-button");
-  homeButton.addEventListener("click", async () => {
-    const homeView = await renderHome();
-    const parent = div.parentElement || document.body;
-    parent.innerHTML = "";
-    parent.appendChild(homeView);
-  });
+  if (homeButton) {
+    homeButton.addEventListener("click", async () => {
+      if (header) header.style.display = "flex";
+      const homeView = await renderHome();
+      const parent = div.parentElement || document.body;
+      parent.innerHTML = "";
+      parent.appendChild(homeView);
+    });
+  }
 
   const learnMoreButton = div.querySelector("#learn-more-button");
   learnMoreButton.addEventListener("click", async () => {
+    if(header) header.style.display = "flex";
     const aboutView = renderAbout();
     const parent = div.parentElement || document.body;
     parent.innerHTML = "";
