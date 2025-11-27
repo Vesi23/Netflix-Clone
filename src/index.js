@@ -28,7 +28,6 @@ export async function loadView(view) {
   }
 }
 homeBtn.addEventListener("click", () => loadView(renderHome));
-// favoritesBtn.addEventListener('click', () => loadView(renderFavorites));
 aboutBtn.addEventListener("click", () => loadView(renderAbout));
 favoritesBtn.addEventListener("click", () => loadView(renderFavorites));
 
