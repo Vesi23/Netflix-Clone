@@ -368,5 +368,5 @@ button:disabled {
   color: #ccc;
 }
 .actor-card:hover {
-  transform: scale(1.05);
+  transform: scale(1.1);
 }
