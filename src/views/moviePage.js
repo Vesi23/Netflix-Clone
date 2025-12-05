@@ -29,7 +29,7 @@ export async function renderMoviePage(movieId) {
     </div>
         <div class = "movie-extra">
         <h2>Trailer</h2>
-        ${trailer``
+        ${trailer
             ? `<div class="trailer-container" data-key="${trailer.key}"><button class="load-trailer">Load trailer ▶️</button></div>`
             : `<p>No trailer available 😢</p>`
         }

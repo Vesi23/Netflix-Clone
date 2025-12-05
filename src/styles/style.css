@@ -349,10 +349,13 @@ button:disabled {
   text-align: center;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
   transition: transform 0.4s;
+  padding: 5px;
+  cursor: pointer;
 }
 .actor-card img {
   width: 100%;
   height: auto;
+  border-radius: 5px;
 }
 .actor-name {
   margin: 10px 0 5px 0;
@@ -366,5 +369,4 @@ button:disabled {
 }
 .actor-card:hover {
   transform: scale(1.05);
-
 }
