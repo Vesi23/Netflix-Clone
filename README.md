@@ -1,0 +1,260 @@
+
+# Netflix Clone (малък фронтенд пример)
+
+Тук са описани как се стартира проектът, каква е структурата на папките и за какво служи всеки файл.
+
+## Как се стартира
+
+Проектът е статично фронтенд приложение (HTML/CSS/JS). Има няколко начина да го стартирате:
+
+1) Бърз начин (отворете директно HTML):
+
+	 - Може просто да отворите `index.html` в браузър (двойно кликване). Това работи за повечето локални тестове, но някои API заявки може да бъдат блокирани от CORS/файлова система.
+
+2) Сървър (препоръчано, особено при AJAX / fetch заявки):
+
+	 - Ако имате Node.js, може да използвате един единствен команден ред за стартиране на прост статичен сървър. В PowerShell (Windows) примерни команди:
+
+```powershell
+# временно: стартира сървър в текущата директория и отваря браузъра
+npx http-server . -o
+
+# или, ако предпочитате 'serve' (static server)
+npx serve . -s
+```
+
+	 - Ако искате да добавите npm скрипт за стартиране (по избор):
+
+```powershell
+npm install --save-dev http-server
+# след това в package.json добавете в "scripts": "start": "http-server . -o"
+npm run start
+```
+
+3) Live reload (ако правите чести промени):
+
+	 - Можете да използвате разширението Live Server в VS Code или `npx live-server` за автоматично презареждане при промяна на файлове.
+
+
+## Файлова структура и обяснение
+
+Това е общата структура (от корена на проекта):
+
+- `index.html` — Главната HTML страница. Тук се вкарва приложението и от тук започва рендъра.
+- `package.json` — Мениджър на пакети (належащо само ако използвате npm инструменти). В този проект няма зададен `start` скрипт по подразбиране.
+- `package-lock.json` — Автоматично генериран файл от npm (заключва версии).
+- `README.md` — Този файл (инструкции и описание).
+- 
+Папка `src/` — основният изходен код (JavaScript, CSS и помощни данни):
+
+- `src/index.js` — Основният JavaScript вход (инициализация на приложението, монтаж на view-ове и т.н.).
+
+- `src/common/`:
+	- `constants.js` — Общи константи, използвани в приложението (ключове, базови URL, конфигурации и т.н.).
+
+- `src/data/`:
+	- `favorites.js` — Локални данни/фиктивни данни за любими филми (примерен data store).
+
+- `src/events/`:
+	- `searchHandler.js` — Обработва събития за търсене (слушатели, debounce логика и т.н.).
+
+- `src/requests/`:
+	- `api.js` — Функции за правене на HTTP заявки към външни API-та (fetch wrappers, parsing, error handling).
+
+- `src/styles/`:
+	- `style.css` — Основни стилове за приложението.
+
+- `src/validations/`:
+	- (празна папка в момента) — Място за функции/логика за валидация (на формуляри или входове). Ако няма файлове, е запазено за бъдещо разширяване.
+
+- `src/views/` — Компоненти/страници, всяка като отделен модул:
+	- `about.js` — Скрипт за страницата "About" (информация за приложението).
+	- `favorites.js` — Логика за показване и управление на любими филми.
+	- `home.js` — Логика/рендер за началната страница.
+	- `movieDetails.js` — Показване на детайли за даден филм.
+	- `moviePage.js` — Вероятно страница за списък/каталог със филми.
+
+
+## Чести промени и къде да търсите
+
+- Ако искате да промените стиловете: модифицирайте `src/styles/style.css`.
+- Ако искате да промените логиката на търсене: `src/events/searchHandler.js`.
+- Ако искате да промените как се правят API повиквания: `src/requests/api.js`.
+
+
+## Бележки и предложения
+
+- Ако планирате да правите сложни fetch-ове към външни API, стартирайте сървър (виж секция "Сървър") за да избегнете проблеми с CORS/локален файлов режим.
+- Може да добавите `start` скрипт в `package.json` за по-удобно стартиране (пример по-горе).
+- Ако желаете, мога да добавя примерен `npm start` скрипт и/или малък dev-server конфиг за вашето repo — кажете как предпочитате (http-server, serve или live-server).
+
+
+# ЗАДАЧА:
+
+Създаване на мини „Netflix Clone“ уеб приложение с HTML, CSS и JavaScript, което визуализира филми чрез външен API и предлага базови интерактивни функции.
+
+----
+
+## 1. Цел на проекта
+Създаване на SPA (Single Page Application) тип приложение, което показва списък с филми, позволява търсене, харесване/махане от любими и визуализиране на детайлна информация за избран филм.
+
+## 2. Използван API: The Movie Database (TMDB)
+Адрес: https://www.themoviedb.org
+
+Как да се достъпи:
+1. Създай безплатен акаунт в TMDB.
+2. Отиди на: **Settings** → **API** → **Create** **API** **Key**.
+3. Копирай своя ключ (например: c5607c4eefbb691f069a40b34ce2510d).
+4. Включи го в проекта си в src/requests/api.js:
+
+```js
+export const API_KEY = 'c5607c4eefbb691f069a40b34ce2510d';
+export const BASE_URL = 'https://api.themoviedb.org/3';
+```
+
+### Примерни заявки:
+* Популярни филми:
+https://api.themoviedb.org/3/movie/popular?api_key=YOUR_API_KEY
+
+* Търсене на филм:
+https://api.themoviedb.org/3/search/movie?api_key=YOUR_API_KEY&query=batman
+
+* Детайли за филм:
+https://api.themoviedb.org/3/movie/{id}?api_key=YOUR_API_KEY
+
+* Трейлъри:
+https://api.themoviedb.org/3/movie/{id}/videos?api_key=YOUR_API_KEY
+
+## 3.Основни функционалности
+| Функционалност       | Описание                                                                                             |
+| -------------------- | ---------------------------------------------------------------------------------------------------- |
+| 🏠 **Home View**     | Зарежда и показва списък с популярни филми от API-то.                                                |
+| 🔍 **Search**        | Позволява търсене на филми по име (използвай `searchHandler.js`).                                    |
+| ❤️ **Favorites**     | При натискане на “❤️” бутон, филмът се добавя в localStorage. Повторно натискане го маха.            |
+| 🎥 **Movie Details** | При клик върху постера на филм се зарежда цял екран с повече информация: трейлър, актьори, описание. |
+| ℹ️ **About View**    | Статична страница с информация за приложението.                                                      |
+
+## 4. Структура на проекта
+```bash
+src/
+├── events/
+│   └── searchHandler.js        # обработва логика за търсене, debounce, input слушатели
+│
+├── requests/
+│   └── api.js                  # функции за работа с TMDB API (fetch, error handling)
+│
+├── styles/
+│   └── style.css               # основни стилове (грид за филмите, бутони, header и т.н.)
+│
+├── validations/                # бъдещи валидации на вход или форми
+│
+├── views/
+│   ├── about.js                # страница "About"
+│   ├── favorites.js            # показва харесани филми от localStorage
+│   ├── home.js                 # начална страница (популярни филми)
+│   ├── movieDetails.js         # визуализира отделен филм (карта/постер)
+│   └── moviePage.js            # пълен изглед на филм с трейлър, актьори, описание
+│
+└── index.js
+                    # основен контролер (routing между views)
+```
+
+
+## Стъпка по стъпка план — как да започне и работи по проекта (Netflix clone):
+### 1) Подготовка на работната среда
+1. Създай папка за проекта и отвори терминал в нея:
+2. Инициализирай npm проект:
+```bash
+npm init -y
+```
+3. Инсталирай live-server за локално разработване (или друг dev-server):
+```bash
+npm install --save-dev live-server
+```
+4. Добави script в package.json:
+```json
+"scripts": {
+  "start": "live-server --port=8080"
+}
+```
+
+## 2) Създаване на основни файлове
+```bash
+netflix-clone/
+├── index.html
+├── package.json
+├── src/
+│   ├── common/
+│   │   ├── data/
+│   │   │   └── favorites.js
+│   │   ├── events/
+│   │   │   └── searchHandler.js
+│   │   ├── requests/
+│   │   │   └── api.js
+│   │   ├── views/
+│   │   │   ├── home.js
+│   │   │   ├── movieDetails.js
+│   │   │   ├── moviePage.js
+│   │   │   ├── favorites.js
+│   │   │   └── about.js
+│   │   └── index.js
+│   └── styles/
+│       └── style.css
+└── README.md
+```
+
+## 3) Първичен HTML и стартиращ скрипт
+index.html — минимален шаблон:
+```html
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Netflix Clone</title>
+  <link rel="stylesheet" href="./src/styles/style.css" />
+</head>
+<body>
+  <header>
+    <h1>Netflix Clone</h1>
+    <nav>
+      <button id="home-btn">Home</button>
+      <button id="favorites-btn">Liked</button>
+      <button id="about-btn">About</button>
+      <input id="search" placeholder="Search movies..." />
+    </nav>
+  </header>
+
+  <main id="app"></main>
+
+  <script type="module" src="./src/common/index.js"></script>
+</body>
+</html>
+```
+
+## 4) Настройка на TMDB API (как да получи ключ и къде да го сложи)
+-> В src/common/requests/api.js сложи базови функции и ключа (локално, за учебен проект):
+
+## 5) Минимални view файлове (първо да работи базово)
+В src/common/views/home.js:
+
+Зарежда getPopularMovies() и рендерира филмова мрежа.
+В src/common/views/movieDetails.js:
+
+renderMovieCard(movie) — създава елемент с картинка и title. Клик върху изображението извиква moviePage.renderMoviePage(id).
+В src/common/views/moviePage.js:
+
+Зарежда getMovieDetails, getMovieVideos, getMovieCredits и рендерира цял екран със backdrop, заглавие, overview, вграден trailer (iframe), актьори и бутон за like/back.
+В src/common/views/favorites.js:
+
+Чете localStorage и показва харесаните филми.
+В src/common/views/about.js:
+
+Статична информация за проекта.
+
+## 6) Работа с харесвания (localStorage)
+src/common/data/favorites.js
+
+## 7)Търсене — src/common/events/searchHandler.js
+
+## 8) Навигация и основен контролер (src/common/index.js)
